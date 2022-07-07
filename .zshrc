@@ -29,9 +29,9 @@ precmd() {
   fi
 }
 
-# Prompt
+## Prompt
 setopt PROMPT_SUBST
-PROMPT='%F{cyan}%d%f %F{green}${vcs_info_msg_0_}%f
+PROMPT='%F{cyan}%~%f %F{green}${vcs_info_msg_0_}%f %F{yellow}${TF}%f
 > '
 
 
