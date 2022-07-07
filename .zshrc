@@ -20,6 +20,13 @@ precmd() {
   elif [ "$NEW_LINE_BEFORE_PROMPT" -eq 1 ]; then
     echo ""
   fi
+  
+  # Set Terraform Workspace
+  if [[ "$(/usr/local/bin/terraform workspace show)" == "default" ]]; then
+    TF=""
+  else 
+    TF="$(/usr/local/bin/terraform workspace show)"
+  fi
 }
 
 # Prompt
@@ -31,3 +38,14 @@ PROMPT='%F{cyan}%d%f %F{green}${vcs_info_msg_0_}%f
 # Case Insensitive Tab Completion
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
+
+## Terminal History Size
+HISTSIZE=99999
+HISTFILESIZE=999999
+SAVEHIST=$HISTSIZE
+
+
+## Aliases
+#this one for clear is so that the clear command moves the cursor to the very top of terminal
+alias clear="unset NEW_LINE_BEFORE_PROMPT && clear"
